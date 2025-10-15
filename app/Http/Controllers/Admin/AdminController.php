@@ -55,7 +55,7 @@ class AdminController extends Controller
 
     public function pendingProducts()
     {
-        $products = Product::where('status', 'pending')->with('vendor')->orderBy('id', 'asc')
+        $products = Product::with('vendor')->orderBy('id', 'desc')
             ->paginate(10);
         return view('admin.products.index', compact('products'));
     }

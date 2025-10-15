@@ -15,7 +15,7 @@ class CutomerController extends Controller
 {
     public function index()
     {
-        $products = Product::where('status', 'approved')->latest()->take(10)->get();
+        $products = Product::where('status', 'approved')->latest()->take(7)->get();
         $topSellings =  Product::withCount('orderItems')->wherehas('orderItems',function($q){
             $q->where('status', 'completed');
         })->orderByDesc('order_items_count')

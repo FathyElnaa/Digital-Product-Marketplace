@@ -46,13 +46,24 @@
                                                 <td>{{ $i++ }}</td>
                                                 <td>{{ $product->title }}</td>
                                                 <td>{{ $product->vendor->name }}</td>
-                                                <td>{{ $product->category->name }}</td>
+                                                <td>{{ $product?->category?->name }}</td>
                                                 <td>{{ $product->price }}</td>
                                                 <td>
-                                                    <a href="{{ route('admin.products.approve', $product->id) }}"
-                                                        class="btn btn-success">موافقة</a>
-                                                    <a href="{{ route('admin.products.reject', $product->id) }}"
-                                                        class="btn btn-danger">رفض</a>
+
+                                                    @if ($product->status == 'pending')
+                                                        <a href="{{ route('admin.products.approve', $product->id) }}"
+                                                            class="btn btn-success">موافقة</a>
+
+                                                        <a href="{{ route('admin.products.reject', $product->id) }}"
+                                                            class="btn btn-danger">رفض</a>
+                                                    @else
+                                                        @if ($product->status == 'approved')
+                                                            <span class="badge text-bg-success">موافق عليه</span>
+                                                        @else
+                                                            <span class="badge text-bg-danger">تم رفضه </span>
+                                                        @endif
+                                                    @endif
+
                                                 </td>
                                             </tr>
                                         @endforeach

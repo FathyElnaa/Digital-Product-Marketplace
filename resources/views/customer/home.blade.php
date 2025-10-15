@@ -76,7 +76,7 @@
 
                         </div>
                         <div class="product__title text-center">
-                            <a class="text-black text-decoration-none" href="single-product.html">
+                            <a class="text-black text-decoration-none" href="{{ route('customer.product_preview',$product) }}">
                                 {{ $product->title }}
                             </a>
                         </div>
@@ -160,12 +160,12 @@
                                 {{ $topSelling->price }} $
                             </span>
                         </div>
-                        <form action="{{ route('cart.add', $product) }}" method="POST" class="w-100">
+                        {{-- <form action="{{ route('cart.add', $product) }}" method="POST" class="w-100">
                             @csrf
                             <button type="submit" class="single-product__add-to-cart primary-button w-100">
                                 أضف إلى السلة
                             </button>
-                        </form>
+                        </form> --}}
                     </div>
                 @endforeach
 
